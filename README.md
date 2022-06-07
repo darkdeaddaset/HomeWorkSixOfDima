@@ -1,5 +1,7 @@
 # HomeWorkSixOfDima
 
+Позже прикручу Jackson
+
 ## Магазин
 
 ![alt text](https://github.com/darkdeaddaset/HomeWorkSixOfDima/blob/main/Result/One.PNG)
