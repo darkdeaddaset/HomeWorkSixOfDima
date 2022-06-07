@@ -6,15 +6,6 @@ public class ShopDTO {
     private String area;
     private int commissary;
 
-    public ShopDTO(){}
-
-    public ShopDTO(long id, String name, String area, int commissary) {
-        this.id = id;
-        this.name = name;
-        this.area = area;
-        this.commissary = commissary;
-    }
-
     public long getId() {
         return id;
     }

@@ -1,17 +1,12 @@
 package com.savin.dto.customer;
 
-public class CustomerDTO {
-    private long id;
+public class CustomerSurnameAndDiscountDTO {
     private String surname;
-    private String home;
     private int discount;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public CustomerSurnameAndDiscountDTO(String surname, int discount) {
+        this.surname = surname;
+        this.discount = discount;
     }
 
     public String getSurname() {
@@ -20,14 +15,6 @@ public class CustomerDTO {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public String getHome() {
-        return home;
-    }
-
-    public void setHome(String home) {
-        this.home = home;
     }
 
     public int getDiscount() {

@@ -1,9 +1,7 @@
 package com.savin.service;
 
-import com.savin.dto.buying.BuyingCustomerOnly;
-import com.savin.dto.buying.BuyingDTO;
-import com.savin.dto.buying.BuyingQuantityOnly;
-import com.savin.dto.buying.BuyingShopOnly;
+import com.savin.dto.buying.*;
+import com.savin.exception.ResourceNotFoundException;
 import com.savin.mapper.BuyingMapper;
 import com.savin.repository.BuyingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,7 @@ public class BuyingService {
     public BuyingDTO getByIdBuying(long id){
         return buyingRepository.findById(id)
                 .map(mapper::fromBuyingToDTO)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Не найдена покупка по id: " + id));
     }
 
     public List<BuyingDTO> getAllBuying(){
@@ -87,6 +85,30 @@ public class BuyingService {
                 .map(delete -> { buyingRepository.delete(delete);
 
                     return delete.getId() + ".Покупка удалена: " + delete.getCustomer().getSurname();
-                }).orElseThrow();
+                }).orElseThrow(() -> new ResourceNotFoundException("Не найдена покупка по id: " + id));
+    }
+
+    public List<BuyingDateDTO> getAllDifferentDate(){
+        return buyingRepository.getAllDifferentDates();
+    }
+
+    public List<BuyingSurnameAndNameDTO> getHistoryOfBuying(){
+        return buyingRepository.getHistoryOfBuying();
+    }
+
+    public List<BuyingDateAndQuantityAndSurnameAndDiscountDTO> getHistoryOfBuyingMore(){
+        return buyingRepository.getHistoryOfBuyingMore();
+    }
+
+    public List<BuyingIdAndSurnameDTO> getMoreSixThousand(){
+        return buyingRepository.MoreSixThousand();
+    }
+
+    public List<BuyingSurnameAndHomeAndDateDTO> getCustomerHomeBuy(){
+        return buyingRepository.getBuyingMarch();
+    }
+
+    public List<BuyingNameAndPriceAndStockAndQuantityDTO> getInfoOfBook(){
+        return buyingRepository.getInfoOfBook();
     }
 }

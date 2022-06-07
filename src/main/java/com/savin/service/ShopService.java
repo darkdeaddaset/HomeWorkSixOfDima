@@ -2,6 +2,8 @@ package com.savin.service;
 
 import com.savin.dto.shop.ShopAreaAndCommissaryOnly;
 import com.savin.dto.shop.ShopDTO;
+import com.savin.dto.shop.ShopNameDTO;
+import com.savin.exception.ResourceNotFoundException;
 import com.savin.mapper.ShopMapper;
 import com.savin.repository.ShopRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class ShopService {
     public ShopDTO getByIdShop(long id){
         return shopRepository.findById(id)
                 .map(mapper::fromShopToShopDTO)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Не найден магазин по id: " + id));
     }
 
     public List<ShopDTO> getAllShops(){
@@ -67,10 +69,15 @@ public class ShopService {
                 .map(deleteShop -> {shopRepository.delete(deleteShop);
 
                     return deleteShop.getId() + ".Магазин удален: " + deleteShop.getName();
-                }).orElseThrow();
+                }).orElseThrow(() -> new ResourceNotFoundException("Не найден магазин по id: " + id));
     }
 
+    public List<ShopNameDTO> getNameFilter(String areaFirst, String areaSecond){
+        return shopRepository.getArea(areaFirst, areaSecond);
+    }
 
-
+    public List<ShopNameDTO> getFindShop(){
+        return shopRepository.getFindShop();
+    }
 
 }

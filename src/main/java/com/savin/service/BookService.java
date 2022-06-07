@@ -1,7 +1,9 @@
 package com.savin.service;
 
 import com.savin.dto.books.BooksDTO;
+import com.savin.dto.books.BooksNameAndPriceDTO;
 import com.savin.dto.books.BooksPriceAndCountOnly;
+import com.savin.exception.ResourceNotFoundException;
 import com.savin.mapper.BookMapper;
 import com.savin.model.Books;
 import com.savin.repository.BooksRepository;
@@ -26,7 +28,7 @@ public class BookService {
     public BooksDTO getByIdBook(long id){
         return booksRepository.findById(id)
                 .map(mapper::fromBooksToDTO)
-                .orElseThrow();
+                .orElseThrow(() ->new ResourceNotFoundException("Not found book with id: " + id));
     }
 
     public List<BooksDTO> getAllBooks(){
@@ -62,11 +64,20 @@ public class BookService {
     }
 
     public String deleteBook(long id){
-        Optional<Books> optionalBooks = booksRepository.findById(id);
+        Books books1 = booksRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Not found book with id: " + id));
         booksRepository.deleteById(id);
 
-        Books books = optionalBooks.get();
+        Books books = books1;
         return id + ".Книга удалена :" + books.getName();
+    }
+
+    public List<BooksNameAndPriceDTO> getDifferentAllNameAndPrice(){
+        return booksRepository.getDifferentAllNameAndPrice();
+    }
+
+    public List<BooksNameAndPriceDTO> findBooks(){
+        return booksRepository.findBooks();
     }
 
 }

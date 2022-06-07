@@ -1,7 +1,10 @@
 package com.savin.service;
 
 import com.savin.dto.customer.CustomerDTO;
+import com.savin.dto.customer.CustomerHomeDTO;
 import com.savin.dto.customer.CustomerNameAndHomeAndDiscountOnly;
+import com.savin.dto.customer.CustomerSurnameAndDiscountDTO;
+import com.savin.exception.ResourceNotFoundException;
 import com.savin.mapper.CustomerMapper;
 import com.savin.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +30,7 @@ public class CustomerService {
     public CustomerDTO getByIdCustomer(long id){
         return customerRepository.findById(id)
                 .map(mapper::fromCustomerToDTO)
-                .orElseThrow();
+                .orElseThrow(() -> new ResourceNotFoundException("Не найден покупатель по id: " + id));
     }
 
     public List<CustomerDTO> getAllCustomers(){
@@ -68,6 +71,14 @@ public class CustomerService {
                 .map(delete -> { customerRepository.delete(delete);
 
                     return delete.getId() + ". Покупатель удален: " + delete.getSurname();
-                }).orElseThrow();
+                }).orElseThrow(() -> new ResourceNotFoundException("Не найден покупатель по id: " + id));
+    }
+
+    public List<CustomerHomeDTO> getDifferentHomeCustomer(){
+        return customerRepository.getDifferentHomeCustomer();
+    }
+
+    public List<CustomerSurnameAndDiscountDTO> getInfo(String home){
+        return customerRepository.getCustomersInfo(home);
     }
 }

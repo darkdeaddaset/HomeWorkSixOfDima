@@ -11,14 +11,14 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface BuyingMapper {
-    @Mapping(target = "shop", source = "buyingDTO.shop")
-    @Mapping(target = "customer", source = "buyingDTO.customer")
-    @Mapping(target = "books", source = "buyingDTO.books")
+    @Mapping(target = "shop.id", source = "buyingDTO.shop_id")
+    @Mapping(target = "customer.id", source = "buyingDTO.customer_id")
+    @Mapping(target = "books.id", source = "buyingDTO.books_id")
     Buying fromDTOToBuying(BuyingDTO buyingDTO);
 
-    @Mapping(target = "shop", source = "buying.shop")
-    @Mapping(target = "customer", source = "buying.customer")
-    @Mapping(target = "books", source = "buying.books")
+    @Mapping(target = "shop_id", source = "buying.shop.id")
+    @Mapping(target = "customer_id", source = "buying.customer.id")
+    @Mapping(target = "books_id", source = "buying.books.id")
     BuyingDTO fromBuyingToDTO(Buying buying);
     void updatePartialShop(BuyingShopOnly buyingShopOnly,
                            @MappingTarget Buying buying);

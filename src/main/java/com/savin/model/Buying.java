@@ -12,13 +12,13 @@ public class Buying {
     private long id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "shop_id")
     private Shop shop;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "book_id")
     private Books books;
     @Column(name = "quanity")

@@ -1,31 +1,15 @@
 package com.savin.dto.buying;
 
-import com.savin.model.Books;
-import com.savin.model.Customer;
-import com.savin.model.Shop;
-
 import java.util.Date;
 
 public class BuyingDTO {
     private long id;
     private Date date;
-    private Shop shop;
-    private Customer customer;
-    private Books books;
-    private int quanity;
+    private long shop_id;
+    private long customer_id;
+    private long books_id;
+    private int quantity;
     private int price;
-
-    public BuyingDTO(){}
-
-    public BuyingDTO(long id, Date date, Shop shop, Customer customer, Books books, int quanity, int price) {
-        this.id = id;
-        this.date = date;
-        this.shop = shop;
-        this.customer = customer;
-        this.books = books;
-        this.quanity = quanity;
-        this.price = price;
-    }
 
     public long getId() {
         return id;
@@ -43,36 +27,36 @@ public class BuyingDTO {
         this.date = date;
     }
 
-    public Shop getShop() {
-        return shop;
+    public long getShop_id() {
+        return shop_id;
     }
 
-    public void setShop(Shop shop) {
-        this.shop = shop;
+    public void setShop_id(long shop_id) {
+        this.shop_id = shop_id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public long getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer_id(long customer_id) {
+        this.customer_id = customer_id;
     }
 
-    public Books getBooks() {
-        return books;
+    public long getBooks_id() {
+        return books_id;
     }
 
-    public void setBooks(Books books) {
-        this.books = books;
+    public void setBooks_id(long books_id) {
+        this.books_id = books_id;
     }
 
-    public int getQuanity() {
-        return quanity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuanity(int quanity) {
-        this.quanity = quanity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public int getPrice() {
