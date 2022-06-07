@@ -1,17 +1,13 @@
 # HomeWorkSixOfDima
 
-##Магазин
-
+## Магазин
 ![alt text](https://github.com/darkdeaddaset/HomeWorkSixOfDima/blob/main/Result/One.PNG)
 
-##Покупатель
-
+## Покупатель
 ![alt text](https://github.com/darkdeaddaset/HomeWorkSixOfDima/blob/main/Result/One.PNG)
 
-##Покупки|Корзина
-
+## Покупки|Корзина
 ![alt text](https://github.com/darkdeaddaset/HomeWorkSixOfDima/blob/main/Result/Three.PNG)
 
-##Книги
-
+## Книги
 ![alt text](https://github.com/darkdeaddaset/HomeWorkSixOfDima/blob/main/Result/Four.PNG)
