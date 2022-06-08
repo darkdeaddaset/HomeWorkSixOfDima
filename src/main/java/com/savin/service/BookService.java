@@ -76,8 +76,8 @@ public class BookService {
         return booksRepository.getDifferentAllNameAndPrice();
     }
 
-    public List<BooksNameAndPriceDTO> findBooks(){
-        return booksRepository.findBooks();
+    public List<BooksNameAndPriceDTO> findBooks(String word){
+        return booksRepository.findBooks(word);
     }
 
 }

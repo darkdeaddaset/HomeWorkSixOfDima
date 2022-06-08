@@ -67,8 +67,8 @@ public class ShopController {
     }
 
     @Operation(summary = "Получение магазинов, расположенные во всех районов кроме Автозаводского и те у кого скидка 10-15%")
-    @GetMapping("/filter-area")
-    public List<ShopNameDTO> getFindShop(){
-        return shopService.getFindShop();
+    @GetMapping("/filter-area/{area}")
+    public List<ShopNameDTO> getFindShop(@PathVariable(value = "area") String area){
+        return shopService.getFindShop(area);
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -24,18 +26,17 @@ public interface BuyingRepository extends JpaRepository<Buying, Long> {
     List<BuyingDateAndQuantityAndSurnameAndDiscountDTO> getHistoryOfBuyingMore();
 
     @Query(value = "SELECT new com.savin.dto.buying.BuyingIdAndSurnameDTO(b.id, c.surname, b.date)" +
-            " FROM Buying b JOIN Customer c ON (b.customer.id = c.id) WHERE b.price > 60000")
-    List<BuyingIdAndSurnameDTO> MoreSixThousand();
+            " FROM Buying b JOIN Customer c ON (b.customer.id = c.id) WHERE b.price > :number")
+    List<BuyingIdAndSurnameDTO> MoreSixThousand(int number);
 
     @Query(value = "SELECT c.surname, c.home, b.date FROM Buying b " +
             "JOIN Customer c ON (b.customer.id = c.id) \n" +
             "JOIN Shop s ON (b.shop.id = s.id) \n" +
-            "WHERE c.home = s.area AND b.date >= '2022-04-01'")
-    List<BuyingSurnameAndHomeAndDateDTO> getBuyingMarch();
+            "WHERE c.home = s.area AND b.date >= :date")
+    List<BuyingSurnameAndHomeAndDateDTO> getBuyingMarch(Date date);
 
     @Query(value = "SELECT bo.name, b.price, bo.stock, b.quantity FROM Buying b JOIN Shop s ON (b.shop.id = s.id)\n" +
             "JOIN Books bo ON (b.books.id = bo.id)\n" +
-            "WHERE s.area = bo.stock AND bo.count > 10\n" +
-            "ORDER BY bo.count")
-    List<BuyingNameAndPriceAndStockAndQuantityDTO> getInfoOfBook();
+            "WHERE s.area = bo.stock AND bo.count > :quantity ORDER BY bo.count")
+    List<BuyingNameAndPriceAndStockAndQuantityDTO> getInfoOfBook(int quantity);
 }

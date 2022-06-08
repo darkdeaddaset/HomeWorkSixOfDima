@@ -4,8 +4,12 @@ import com.savin.dto.buying.*;
 import com.savin.service.BuyingService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -89,20 +93,20 @@ public class BuyingController {
     }
 
     @Operation(summary = "Получение номер заказа, фамилию и дату (Продано на сумму не меньше 60000 руб.")
-    @GetMapping("/filter-60000")
-    public List<BuyingIdAndSurnameDTO> getMoreSixThousand(){
-        return buyingService.getMoreSixThousand();
+    @GetMapping("/filter/{number}")
+    public List<BuyingIdAndSurnameDTO> getMoreSixThousand(@PathVariable(value = "number") int number){
+        return buyingService.getMoreSixThousand(number);
     }
 
     @Operation(summary = "Получение покупок сделанные покупателем в своем районе не ранее марта месяца")
-    @GetMapping("/filter-march")
-    public List<BuyingSurnameAndHomeAndDateDTO> getMarch(){
-        return buyingService.getCustomerHomeBuy();
+    @GetMapping("/filter-march/{date}")
+    public List<BuyingSurnameAndHomeAndDateDTO> getMarch(@PathVariable(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
+        return buyingService.getCustomerHomeBuy(date);
     }
 
     @Operation(summary = "Получение данных по покупке книг, приобретенных в районе складирования и содержащихся в запасе более 10 штук")
-    @GetMapping("/get-info-book")
-    public List<BuyingNameAndPriceAndStockAndQuantityDTO> getBook(){
-        return buyingService.getInfoOfBook();
+    @GetMapping("/get-info-book/{quantity}")
+    public List<BuyingNameAndPriceAndStockAndQuantityDTO> getBook(@PathVariable(value = "quantity") int quantity){
+        return buyingService.getInfoOfBook(quantity);
     }
 }

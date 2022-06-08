@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -100,15 +103,15 @@ public class BuyingService {
         return buyingRepository.getHistoryOfBuyingMore();
     }
 
-    public List<BuyingIdAndSurnameDTO> getMoreSixThousand(){
-        return buyingRepository.MoreSixThousand();
+    public List<BuyingIdAndSurnameDTO> getMoreSixThousand(int number){
+        return buyingRepository.MoreSixThousand(number);
     }
 
-    public List<BuyingSurnameAndHomeAndDateDTO> getCustomerHomeBuy(){
-        return buyingRepository.getBuyingMarch();
+    public List<BuyingSurnameAndHomeAndDateDTO> getCustomerHomeBuy(Date date){
+        return buyingRepository.getBuyingMarch(date);
     }
 
-    public List<BuyingNameAndPriceAndStockAndQuantityDTO> getInfoOfBook(){
-        return buyingRepository.getInfoOfBook();
+    public List<BuyingNameAndPriceAndStockAndQuantityDTO> getInfoOfBook(int quantity){
+        return buyingRepository.getInfoOfBook(quantity);
     }
 }

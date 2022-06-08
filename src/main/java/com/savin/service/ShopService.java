@@ -76,8 +76,8 @@ public class ShopService {
         return shopRepository.getArea(areaFirst, areaSecond);
     }
 
-    public List<ShopNameDTO> getFindShop(){
-        return shopRepository.getFindShop();
+    public List<ShopNameDTO> getFindShop(String area){
+        return shopRepository.getFindShop(area);
     }
 
 }

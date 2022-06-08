@@ -66,8 +66,8 @@ public class BooksController {
     }
 
     @Operation(summary = "Получение книги, в которых встречается слово 'Windows' или стоящие более 20000 руб.")
-    @GetMapping("find-book")
-    public List<BooksNameAndPriceDTO> findBooks(){
-        return bookService.findBooks();
+    @GetMapping("find-book/{word}")
+    public List<BooksNameAndPriceDTO> findBooks(@PathVariable(value = "word") String word){
+        return bookService.findBooks(word);
     }
 }
