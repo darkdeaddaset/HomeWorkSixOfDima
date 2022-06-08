@@ -100,8 +100,9 @@ public class BuyingController {
 
     @Operation(summary = "Получение покупок сделанные покупателем в своем районе не ранее марта месяца")
     @GetMapping("/filter-march/{date}")
-    public List<BuyingSurnameAndHomeAndDateDTO> getMarch(@PathVariable(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
-        return buyingService.getCustomerHomeBuy(date);
+    public List<BuyingSurnameAndHomeAndDateDTO> getMarch(@PathVariable(value = "date")@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") String date){
+        Timestamp timestamp = Timestamp.valueOf(date);
+        return buyingService.getCustomerHomeBuy(timestamp);
     }
 
     @Operation(summary = "Получение данных по покупке книг, приобретенных в районе складирования и содержащихся в запасе более 10 штук")
