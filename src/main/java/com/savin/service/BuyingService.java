@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -107,8 +108,9 @@ public class BuyingService {
         return buyingRepository.MoreSixThousand(number);
     }
 
-    public List<BuyingSurnameAndHomeAndDateDTO> getCustomerHomeBuy(Date date){
-        return buyingRepository.getBuyingMarch(date);
+    public List<BuyingSurnameAndHomeAndDateDTO> getCustomerHomeBuy(String date){
+        Timestamp timestamp = Timestamp.valueOf(date);
+        return buyingRepository.getBuyingMarch(timestamp);
     }
 
     public List<BuyingNameAndPriceAndStockAndQuantityDTO> getInfoOfBook(int quantity){
