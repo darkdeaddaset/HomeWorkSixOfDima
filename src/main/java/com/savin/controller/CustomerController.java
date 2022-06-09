@@ -66,7 +66,7 @@ public class CustomerController {
         return customerService.getDifferentHomeCustomer();
     }
 
-    @Operation(summary = "Получение клиентов и их скидки, которые проживают в указаннои районе")
+    @Operation(summary = "Получение клиентов и их скидки, которые проживают в указанном районе")
     @GetMapping("/info/{home}")
     public List<CustomerSurnameAndDiscountDTO> getInfo(@PathVariable(value = "home") String home){
         return customerService.getInfo(home);

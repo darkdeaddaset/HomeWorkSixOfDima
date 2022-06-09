@@ -98,13 +98,13 @@ public class BuyingController {
         return buyingService.getMoreSixThousand(number);
     }
 
-    @Operation(summary = "Получение покупок сделанные покупателем в своем районе не ранее марта месяца")
+    @Operation(summary = "Получение покупок сделанные покупателем в своем районе не ранее указаного месяца")
     @GetMapping("/filter-march/{date}")
     public List<BuyingSurnameAndHomeAndDateDTO> getMarch(@PathVariable(value = "date")@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") String date){
         return buyingService.getCustomerHomeBuy(date);
     }
 
-    @Operation(summary = "Получение данных по покупке книг, приобретенных в районе складирования и содержащихся в запасе более 10 штук")
+    @Operation(summary = "Получение данных по покупке книг, приобретенных в районе складирования и содержащихся в запасе более указанного количества")
     @GetMapping("/get-info-book/{quantity}")
     public List<BuyingNameAndPriceAndStockAndQuantityDTO> getBook(@PathVariable(value = "quantity") int quantity){
         return buyingService.getInfoOfBook(quantity);

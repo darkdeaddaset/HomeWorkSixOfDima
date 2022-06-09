@@ -66,9 +66,11 @@ public class ShopController {
         return shopService.getNameFilter(areaFirst, areaSecond);
     }
 
-    @Operation(summary = "Получение магазинов, расположенные во всех районов кроме Автозаводского и те у кого скидка 10-15%")
-    @GetMapping("/filter-area/{area}")
-    public List<ShopNameDTO> getFindShop(@PathVariable(value = "area") String area){
-        return shopService.getFindShop(area);
+    @Operation(summary = "Получение магазинов, расположенные во всех районов кроме указанного и те у кого скидка указанная%")
+    @GetMapping("/filter-area/{area}&{from}-{to}")
+    public List<ShopNameDTO> getFindShop(@PathVariable(value = "area") String area,
+                                         @PathVariable(value = "from") int from,
+                                         @PathVariable(value = "to") int to){
+        return shopService.getFindShop(area, from, to);
     }
 }

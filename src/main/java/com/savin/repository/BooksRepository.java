@@ -12,6 +12,6 @@ public interface BooksRepository extends JpaRepository<Books, Long> {
     @Query(value = "SELECT DISTINCT new com.savin.dto.books.BooksNameAndPriceDTO(name ,price) FROM Books")
     List<BooksNameAndPriceDTO> getDifferentAllNameAndPrice();
 
-    @Query(value = "SELECT new com.savin.dto.books.BooksNameAndPriceDTO(name, price) FROM Books WHERE name LIKE CONCAT('%', :word, '%')  OR price > 20000")
-    List<BooksNameAndPriceDTO> findBooks(String word);
+    @Query(value = "SELECT new com.savin.dto.books.BooksNameAndPriceDTO(name, price) FROM Books WHERE name LIKE CONCAT('%', :word, '%')  OR price > :price")
+    List<BooksNameAndPriceDTO> findBooks(String word, int price);
 }
